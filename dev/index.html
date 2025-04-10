@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test-project</title>
+</head>
+
+<body>
+    <h1>Counter: <span id="counter">0</span></h1>
+    <button id="incrementButton">Generate Table</button>
+
+    <div id="tableContainer"></div> <!-- Container for the generated table -->
+
+    <script src="wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+</body>
